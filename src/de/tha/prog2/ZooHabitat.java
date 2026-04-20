@@ -27,7 +27,7 @@ public class ZooHabitat {
 	public void addAnimal(Animal a) throws HabitatFullException, InvalidAnimalException {
 		if (animals.size() >= maxCapacity) {
 			throw new HabitatFullException("Das Habitat ist bereits voll!");
-		} else if (animals.size() != 0 && a.getClass() != animals.get(0).getClass()) {
+		} else if (animals.size() != 0 && a.getClass() != animals.get(0).getClass()) {  // funktioniert nicht mehr sobald es mehrere Tierarten als Klassen gibt wie z.B. Tiger und Löwe als Carnivore besser mit booleans und instanceof...
 			throw new InvalidAnimalException("Es können nur gleichartige Tiere in ein Habitat!");
 		} else if (animals.contains(a)) {
 			System.out.println("Tier bereits in Habitat!");
