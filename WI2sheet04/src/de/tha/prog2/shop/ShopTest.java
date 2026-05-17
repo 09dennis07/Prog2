@@ -81,10 +81,17 @@ class ShopTest {
 		customer.receiveProduct(testBook);
 		assertEquals(testBook, customer.getProducts().get(0));
 	}
-		
+	@Test
+	void testCannotShipException() {
+		try {
+			center.sentProductsToCustomer(cart);
+		} catch (CannotShipException cse) {
+			
+		}
+	}
 	@Test
 	void receiveProductsDownloadable() {
-		customer.receiveProduct(testBook);
+		customer.downloadProduct(testBook);
 		assertEquals(testBook, customer.getProducts().get(0));
 	}
 	
