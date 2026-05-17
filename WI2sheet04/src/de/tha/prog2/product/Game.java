@@ -1,8 +1,11 @@
 package de.tha.prog2.product;
 
+import de.tha.prog2.shop.Customer;
+
 public class Game extends AbstractProduct implements  Shippable, Downloadable {
 	
 	private int ageRestriction;
+	private static int unitsSold;
 
 	public Game(String title, int ageRestriction, double netPrice, Tax taxClass) {
 		super(title, new Price(netPrice, taxClass));
@@ -41,14 +44,22 @@ public class Game extends AbstractProduct implements  Shippable, Downloadable {
 
 	@Override
 	public int getUnitsSold() {
-		// TODO Auto-generated method stub
-		return 0;
+		return unitsSold;
 	}
 
 	@Override
 	public void unitSold() {
-		// TODO Auto-generated method stub
-		
+		unitsSold++;
+	}
+
+	@Override
+	public void transferTo(Customer c) {
+	    c.downloadProduct(this);
+	}
+
+	@Override
+	public void shipTo(Customer c) {
+	    c.receiveProduct(this);
 	}
 
 }

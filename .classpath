@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="06_meta/src"/>
+	<classpathentry kind="src" path="07_container/src"/>
+	<classpathentry kind="src" path="Livecoding1_Abgabe-Code/src"/>
+	<classpathentry kind="src" path="Livecoding1_Übung05/src"/>
+	<classpathentry kind="src" path="WG_Verwaltung_Vorlage/src"/>
+	<classpathentry kind="src" path="WI2sheet01/src"/>
+	<classpathentry kind="src" path="WI2sheet02/src"/>
+	<classpathentry kind="src" path="WI2sheet03/src"/>
+	<classpathentry kind="src" path="WI2sheet04/src"/>
+	<classpathentry kind="output" path="06_meta/bin"/>
+</classpath>
