@@ -5,19 +5,27 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import de.tha.prog2.product.AbstractProduct;
 import de.tha.prog2.product.Book;
+import de.tha.prog2.product.Price;
+import de.tha.prog2.product.Product;
 import de.tha.prog2.product.Tax;
 
 class ShopTest {
 	
-	Customer customer = new Customer("Musterweg 1", "Max", 100.0, "max@mail.de");
-	ShoppingCart cart = new ShoppingCart(customer);
-    Shop shop = new Shop();
-    FulfillmentCenter center = new FulfillmentCenter();
-	Book testBook = new Book("Tolkien", "Der Hobbit", 15.0, Tax.REDUCED);
+	Customer customer;
+	ShoppingCart cart;
+    Shop shop;
+    FulfillmentCenter center;
+	Book testBook;
 
 	@BeforeEach
 	void setUp() throws Exception {
+		customer = new Customer("Musterweg 1", "Max", 100.0, "max@mail.de");
+		cart = new ShoppingCart(customer);
+		shop = new Shop();
+		center = new FulfillmentCenter();
+		testBook = new Book("Tolkien", "Der Hobbit", 15.0, Tax.REDUCED);
 	}
 
 	@Test
@@ -59,21 +67,41 @@ class ShopTest {
 	}
 	
 	@Test
+	void testEnoughMoneyException() {
+		try {
+			customer.pay(99);
+		} catch (NotEnoughMoneyException neme) {
+			fail("Hätte funktionieren müssen!");
+		}
+	}
+	
+	@Test
 	void testNotEnoughMoneyException() {
 		try {
 			customer.pay(101);
+			fail("Hätte nicht klappen dürfen!");
 		} catch (NotEnoughMoneyException neme) {
-			
 		}
 	}
 	
 	@Test
 	void testCannotShipException() {
-		try {
-			center.sentProductsToCustomer(cart);
-		} catch (CannotShipException cse) {
-			
-		}
+		FulfillmentCenter testFulfill = new FulfillmentCenter();
+		ShoppingCart testCart = new ShoppingCart(customer);
+		
+		Product fehlerhaftesProdukt = new Product() {
+			public String getName() { return "Fehler"; }
+			public Price getPrice() { return new Price(10.0, Tax.FULL); }
+		};
+		testCart.addProduct(fehlerhaftesProdukt);
+
+		CannotShipException exception = assertThrows(
+				CannotShipException.class,
+				() -> {
+					testFulfill.sentProductsToCustomer(testCart);
+				}
+		);
+		
 	}
 	
 	@Test
@@ -81,14 +109,7 @@ class ShopTest {
 		customer.receiveProduct(testBook);
 		assertEquals(testBook, customer.getProducts().get(0));
 	}
-	@Test
-	void testCannotShipException() {
-		try {
-			center.sentProductsToCustomer(cart);
-		} catch (CannotShipException cse) {
-			
-		}
-	}
+
 	@Test
 	void receiveProductsDownloadable() {
 		customer.downloadProduct(testBook);
@@ -96,17 +117,9 @@ class ShopTest {
 	}
 	
 	@Test
-	void ShoppingCartbuy() {
+	void ShoppingCartbuy() throws NotEnoughMoneyException, CannotShipException {
 		cart.addProduct(testBook);
-		try {
-			shop.buy(cart);
-		} catch (NotEnoughMoneyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CannotShipException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		shop.buy(cart);
 		assertEquals(shop.getMoney(), testBook.getPrice().getGrossPrice());
 	}
 }
