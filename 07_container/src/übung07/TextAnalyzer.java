@@ -2,8 +2,6 @@ package übung07;
 import java.util.Collections;
 import java.util.Map;
 
-import de.tha.prog2.tools.TextProvider;
-
 class TextAnalyser {
 
 	public void countChars(Map<Character, Integer> map, TextProvider provider) {

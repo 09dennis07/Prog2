@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-import de.tha.prog2.tools.*;
 
 public class TextProviderTest {
 
