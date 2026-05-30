@@ -1,0 +1,18 @@
+member_name;isbn;title;loan_days;rating
+Anna Müller;978-3-16-148410-0;Der Prozess;12;4.5
+Tom Berger;978-0-7432-7356-5;1984;8;5.0
+Anna Müller;978-0-06-112008-4;To Kill a Mockingbird;21;3.8
+Lena Koch;978-0-7432-7356-5;1984;5;4.2
+Peter Wagner;978-0-06-093546-9;Brave New World;18;4.7
+Tom Berger;978-3-16-148410-0;Der Prozess;3;4.1
+Lena Koch;978-0-14-028329-7;Of Mice and Men;11;3.5
+Markus Huber;978-0-7432-7356-5;1984;14;4.9
+Peter Wagner;978-0-06-093546-9;Brave New World;7;4.3
+Anna Müller;978-0-7432-7356-5;1984;6;4.0
+Sophie Braun;978-3-257-06077-8;Der Vorleser;9;3.9
+Markus Huber;978-0-06-112008-4;To Kill a Mockingbird;2;4.6
+Sophie Braun;978-0-14-028329-7;Of Mice and Men;15;4.1
+Julia Schmitt;978-0-06-093546-9;Brave New World;22;4.8
+Tom Berger;978-0-06-112008-4;To Kill a Mockingbird;10;4.4
+Julia Schmitt;978-3-16-148410-0;Der Prozess;4;3.7
+Lena Koch;978-0-06-093546-9;Brave New World;13;4.5
