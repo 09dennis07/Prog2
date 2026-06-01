@@ -1,10 +1,11 @@
 package de.tha.prog2.task1;
 
 import java.util.Enumeration;
+import java.util.NoSuchElementException;
 
 public abstract class AbstractSet <E> implements Set<E>{
 	
-	public DoubleLinkedList <E> list = new DoubleLinkedList <E>();
+	public DoubleLinkedList<E> list = new DoubleLinkedList<E>();
 	
 	@Override
 	public boolean test(E data) {
@@ -27,7 +28,28 @@ public abstract class AbstractSet <E> implements Set<E>{
 
 	@Override
 	public Enumeration<E> elements() {
-		return;
-	}
+		return new Enumeration<E>() {
+			
+			private int currentIndex;
+
+			@Override
+			public boolean hasMoreElements() {
+				return currentIndex < list.size();
+			}
+
+			@Override
+			public E nextElement() {
+				
+				if (!hasMoreElements()) {
+					throw new NoSuchElementException();
+				}
+				
+				E currentElement = list.get(currentIndex);
+				
+				currentIndex++;
+				
+				return currentElement;
+			}
+		};	}
 	
 }

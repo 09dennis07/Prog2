@@ -6,21 +6,15 @@ public class OrderedSet<E extends Comparable<E>> extends AbstractSet<E> {
 	public boolean add(E data) {
 		if (this.test(data)) {
 			return false;
-		} else {
-			if (list.size() == 0) {
-				list.add(data);
-			} else {
-				for (int i = 0; i < list.size(); i++) {
+		} 
+
+		for (int i = 0; i < list.size(); i++) {
 					if (data.compareTo(list.get(i)) < 0) {
 						list.insertAt(i, data);
 						return true;
 					}
-
 				}
-			}
-
-		}
-		list.addLast(data);
+		list.add(data);
 		return true;
 	}
 
